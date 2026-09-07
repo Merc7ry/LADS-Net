@@ -1,4 +1,8 @@
-# LADS-Net
+
+
+
+
+# 低空场景下双重偏移自校正与加权引导监督的轻量化语义分割方法
 
 Official PyTorch implementation of **LADS-Net** for UAV / remote-sensing semantic segmentation, with **DOSC** (Dual Offset Self-Correction) and **WGS** (Weighted Guided Supervision).
 
@@ -39,7 +43,7 @@ pretrained_pth/pvt/pvt_v2_b2.pth
 python val.py --data_dir [YOUR_DATA_DIR] --dataset {dataset} --model_path {model weights}
 ```
 
-Supported datasets: `uavid`, `vdd`, `aeroscapes`, `udd5`, `semantic_drone`, `vaihingen`, `potsdam`, `loveda`.
+Supported datasets: `uavid`, `vdd`, `aeroscapes`, `udd5`, `semantic_drone`, `vaihingen`, `potsdam`.
 
 ---
 
