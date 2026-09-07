@@ -10,5 +10,4 @@ thop
 ml-collections
 scipy
 yacs
-# Optional for PyramidMamba:
-# mamba-ssm
+
