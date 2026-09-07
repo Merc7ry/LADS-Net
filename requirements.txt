@@ -1,0 +1,14 @@
+torch>=2.0.0
+torchvision>=0.15.0
+timm>=0.6.12
+einops
+albumentations
+opencv-python
+numpy
+tqdm
+thop
+ml-collections
+scipy
+yacs
+# Optional for PyramidMamba:
+# mamba-ssm
