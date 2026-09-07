@@ -130,7 +130,7 @@ def main():
     parser.add_argument('--kernel_sizes', type=int, nargs='+', default=None)
     parser.add_argument('--simple_decoder', action='store_true')
     parser.add_argument('--no_gag', action='store_true')
-    parser.add_argument('--no_mkira', action='store_true')
+    parser.add_argument('--no_msair', action='store_true')
     parser.add_argument('--no_offset', action='store_true')
     parser.add_argument('--no_cls_offset', action='store_true')
     parser.add_argument('--no_feat_offset', action='store_true')
@@ -166,7 +166,8 @@ def main():
         kernel_sizes = resolve_kernel_sizes(kernel_sizes)
     simple_decoder = checkpoint.get('simple_decoder', args.simple_decoder)
     use_gag = checkpoint.get('use_gag', not args.no_gag)
-    use_mkira = checkpoint.get('use_mkira', not args.no_mkira)
+    use_msair = checkpoint.get(
+        'use_msair', checkpoint.get('use_mkira', not args.no_msair))
     use_wgs = checkpoint.get('use_wgs', not args.no_wgs)
     wgs_supervision = checkpoint.get('wgs_supervision', 'wgs')
     wgs_infer_raw = checkpoint.get('wgs_infer', args.wgs_infer)
@@ -203,7 +204,7 @@ def main():
         img_size=args.input_h,
         simple_decoder=simple_decoder,
         use_gag=use_gag,
-        use_mkira=use_mkira,
+        use_msair=use_msair,
     )
     if not simple_decoder and kernel_sizes is not None:
         model_kwargs['kernel_sizes'] = kernel_sizes

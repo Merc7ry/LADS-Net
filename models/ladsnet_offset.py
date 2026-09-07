@@ -112,7 +112,7 @@ class LADSNetOffsetOutput :
     kernel_sizes =None ,
     simple_decoder =False ,
     use_gag =True ,
-    use_mkira =True ,
+    use_msair =True ,
     **kwargs ,
     ):
         if name not in _BACKBONES :
@@ -123,7 +123,7 @@ class LADSNetOffsetOutput :
         kernel_sizes =resolved_kernels ,
         simple_decoder =simple_decoder ,
         use_gag =use_gag ,
-        use_mkira =use_mkira ,
+        use_msair =use_msair ,
         **kwargs ,
         )
         if use_offset :

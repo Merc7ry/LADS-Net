@@ -18,7 +18,7 @@ def load_model_from_checkpoint(
     kernel_sizes=None,
     simple_decoder=False,
     no_gag=False,
-    no_mkira=False,
+    no_msair=False,
     no_wgs=False,
     wgs_infer='wf',
     img_size=512,
@@ -39,7 +39,8 @@ def load_model_from_checkpoint(
         resolved_kernel_sizes = resolve_kernel_sizes(resolved_kernel_sizes)
     simple_decoder = checkpoint.get('simple_decoder', simple_decoder)
     use_gag = checkpoint.get('use_gag', not no_gag)
-    use_mkira = checkpoint.get('use_mkira', not no_mkira)
+    use_msair = checkpoint.get(
+        'use_msair', checkpoint.get('use_mkira', not no_msair))
     use_wgs = checkpoint.get('use_wgs', not no_wgs)
 
     input_h = checkpoint.get('input_h', img_size)
@@ -57,7 +58,7 @@ def load_model_from_checkpoint(
         img_size=input_h,
         simple_decoder=simple_decoder,
         use_gag=use_gag,
-        use_mkira=use_mkira,
+        use_msair=use_msair,
     )
     if not simple_decoder and resolved_kernel_sizes is not None:
         model_kwargs['kernel_sizes'] = resolved_kernel_sizes

@@ -104,7 +104,7 @@ class LADS_Net (nn .Module ):
     gag_kernel =3 ,
     simple_decoder =False ,
     use_gag =True ,
-    use_mkira =True ,
+    use_msair =True ,
     **kwargs ,
     ):
         super ().__init__ ()
@@ -117,7 +117,7 @@ class LADS_Net (nn .Module ):
         self .encoder_name =encoder 
         self .simple_decoder =simple_decoder 
         self .use_gag =bool (use_gag )and not simple_decoder 
-        self .use_mkira =bool (use_mkira )and not simple_decoder 
+        self .use_msair =bool (use_msair )and not simple_decoder 
         self .encoder =cfg ['factory']()
         channels =_decoder_channels (cfg ['embed_dims'])
 
@@ -166,7 +166,7 @@ class LADS_Net (nn .Module ):
             expansion_factor =expansion_factor ,dw_parallel =True ,add =True ,
             kernel_sizes =kernel_sizes )
 
-            if self .use_mkira :
+            if self .use_msair :
                 self .CA1 =ChannelAttention (channels [4 ],ratio =16 )
                 self .CA2 =ChannelAttention (channels [3 ],ratio =16 )
                 self .CA3 =ChannelAttention (channels [2 ],ratio =16 )
@@ -183,11 +183,11 @@ class LADS_Net (nn .Module ):
         if simple_decoder :
             decoder_type ='simple-upsampling'
         else :
-            parts =['MKIR'if tuple (kernel_sizes )!=(3 ,)else 'IRB']
+            parts =['MSIR'if tuple (kernel_sizes )!=(3 ,)else 'IRB']
             if self .use_gag :
                 parts .append ('GAG')
-            if self .use_mkira :
-                parts .append ('MKIRA')
+            if self .use_msair :
+                parts .append ('MSAIR')
             decoder_type ='+'.join (parts )
         print (
         f'LADS_Net created with encoder={encoder}, channels={channels}, '
@@ -224,8 +224,8 @@ class LADS_Net (nn .Module ):
         p4 =self .out4 (out )
         return [p4 ,p3 ,p2 ,p1 ]
 
-    def _apply_mkira (self ,out ,ca ):
-        if not self .use_mkira :
+    def _apply_msair (self ,out ,ca ):
+        if not self .use_msair :
             return out 
         out =ca (out )*out 
         out =self .SA (out )*out 
@@ -243,30 +243,30 @@ class LADS_Net (nn .Module ):
         t4 =x3 
         out =x4 
 
-        out =self ._apply_mkira (out ,self .CA1 if self .use_mkira else None )
+        out =self ._apply_msair (out ,self .CA1 if self .use_msair else None )
         out =F .relu (F .interpolate (
         self .decoder1 (out ),scale_factor =(2 ,2 ),mode ='bilinear',align_corners =False ))
         out =self ._apply_gag_add (out ,t4 ,self .AG1 if self .use_gag else None )
 
-        out =self ._apply_mkira (out ,self .CA2 if self .use_mkira else None )
+        out =self ._apply_msair (out ,self .CA2 if self .use_msair else None )
         out =F .relu (F .interpolate (
         self .decoder2 (out ),scale_factor =(2 ,2 ),mode ='bilinear',align_corners =False ))
         p1 =F .interpolate (self .out1 (out ),scale_factor =(8 ,8 ),mode ='bilinear',align_corners =False )
         out =self ._apply_gag_add (out ,t3 ,self .AG2 if self .use_gag else None )
 
-        out =self ._apply_mkira (out ,self .CA3 if self .use_mkira else None )
+        out =self ._apply_msair (out ,self .CA3 if self .use_msair else None )
         out =F .relu (F .interpolate (
         self .decoder3 (out ),scale_factor =(2 ,2 ),mode ='bilinear',align_corners =False ))
         p2 =F .interpolate (self .out2 (out ),scale_factor =(4 ,4 ),mode ='bilinear',align_corners =False )
         out =self ._apply_gag_add (out ,t2 ,self .AG3 if self .use_gag else None )
 
-        out =self ._apply_mkira (out ,self .CA4 if self .use_mkira else None )
+        out =self ._apply_msair (out ,self .CA4 if self .use_msair else None )
         out =F .relu (F .interpolate (
         self .decoder4 (out ),scale_factor =(2 ,2 ),mode ='bilinear',align_corners =False ))
         p3 =F .interpolate (self .out3 (out ),scale_factor =(2 ,2 ),mode ='bilinear',align_corners =False )
         out =self ._apply_gag_add (out ,t1 ,self .AG4 if self .use_gag else None )
 
-        out =self ._apply_mkira (out ,self .CA5 if self .use_mkira else None )
+        out =self ._apply_msair (out ,self .CA5 if self .use_msair else None )
         out =F .relu (F .interpolate (
         self .decoder5 (out ),scale_factor =(2 ,2 ),mode ='bilinear',align_corners =False ))
         p4 =self .out4 (out )
