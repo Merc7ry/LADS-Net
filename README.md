@@ -4,6 +4,11 @@ Official PyTorch implementation of **LADS-Net** for UAV / remote-sensing semanti
 
 ---
 
+![LADS-Net Architecture](doc/archs.png)
+
+
+
+
 ## 📢 News
 
 - `[2026.9]` Code of LADS-Net is released!
