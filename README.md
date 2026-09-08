@@ -6,7 +6,6 @@ Official PyTorch implementation of **LADS-Net** for UAV / aerial semantic segmen
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?logo=pytorch&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Encoder](https://img.shields.io/badge/Encoder-PVTv2--B2-0A66C2)
 
 We present **LADS-Net**, a lightweight semantic segmentation network tailored for resource-constrained low-altitude UAV scenes. It combines a multi-scale attention decoder (**MSAIR** / **MSIR** + **GAG**), **DOSC** (Dual Offset Self-Correction) for input-adaptive class–feature matching, and **WGS** (Weighted Guided Supervision) for cross-scale training — removed at inference with zero extra cost.
@@ -25,9 +24,7 @@ We present **LADS-Net**, a lightweight semantic segmentation network tailored fo
 
 ### Cross-domain generalization (ISPRS)
 
-把泛化可视化图放到：`doc/generalization.png`
-
-![Cross-domain generalization on ISPRS Vaihingen / Potsdam](doc/generalization.png)
+![Cross-domain generalization on ISPRS Vaihingen / Potsdam](doc/Generalized_visualization.png)
 
 ## 🛠️ Setup
 
@@ -68,10 +65,10 @@ data/<dataset>/
 主实验用 5 个低空无人机数据集；ISPRS 用于跨平台泛化。
 
 
-| Dataset              | `--dataset`      | #Classes | Default crop |
+| Dataset              |     dataset      | #Classes | crop         |
 | -------------------- | ---------------- | -------- | ------------ |
 | UAVid                | `uavid`          | 8        | 512×512      |
-| VDD                  | `vdd`            | 7        | 400          |
+| VDD                  | `vdd`            | 7        | 512×512      |
 | AeroScapes           | `aeroscapes`     | 12       | 512×512      |
 | UDD5                 | `udd5`           | 5        | 512×512      |
 | Semantic Drone (SDD) | `semantic_drone` | 24       | 512×512      |
