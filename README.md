@@ -1,6 +1,4 @@
-# LADS-Net
-
-**低空场景下双重偏移自校正与加权引导监督的轻量化语义分割方法**
+# Lightweight Semantic Segmentation for Low-Altitude UAV Scenes via Dual-Offset Self-Correction and Weighted Guided Supervision
 
 Official PyTorch implementation of **LADS-Net** for UAV / aerial semantic segmentation.
 
@@ -43,7 +41,7 @@ pip install -r requirements.txt
 
 ### ⬇ Pretrained encoder
 
-从 [PVTv2](https://github.com/whai362/PVT) 下载 **PVTv2-B2**，放到：
+Download **PVTv2-B2** from [PVTv2](https://github.com/whai362/PVT) and place it in:
 
 ```text
 pretrained_pth/pvt/pvt_v2_b2.pth
@@ -62,8 +60,7 @@ data/<dataset>/
 
 
 ## 📊 Datasets & Splits
-
-主实验用 5 个低空无人机数据集；ISPRS 用于跨平台泛化。
+Five low-altitude drone datasets are used for the main experiments, while the ISPRS dataset is employed for cross-platform generalization.
 
 
 | Dataset              |     dataset      | #Classes | crop         |
@@ -81,7 +78,7 @@ data/<dataset>/
 
 ## ⚙️ Experiment Configuration
 
-除特别说明外，主实验采用统一协议。
+Unless otherwise specified, the main experiment follows a unified protocol.
 
 ### Hardware & framework
 
