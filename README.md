@@ -1,4 +1,4 @@
-# Lightweight Semantic Segmentation for Low-Altitude UAV Scenes via Dual-Offset Self-Correction and Weighted Guided Supervision
+# Lightweight Semantic Segmentation of Low-Altitude UAV Imagery via Dual Offset Self-Correction and Weighted Guided Supervision
 
 Official PyTorch implementation of **LADS-Net** for UAV / aerial semantic segmentation.
 
