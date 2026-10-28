@@ -6,7 +6,7 @@ Official PyTorch implementation of **LADS-Net** for UAV / aerial semantic segmen
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?logo=pytorch&logoColor=white)
 ![Encoder](https://img.shields.io/badge/Encoder-PVTv2--B2-0A66C2)
 
-**LADS-Net** is a lightweight semantic segmentation network for resource-constrained low-altitude UAV scenes. It combines **MSAIR** for multi-scale attention refinement, **DOSC** for input-adaptive class–feature alignment, and **WGS** for cross-scale guided supervision during training. Since WGS is discarded at inference, it incurs **no additional computational overhead**.
+**LADS-Net** is a lightweight semantic segmentation network designed for resource-constrained low-altitude UAV scenarios. It integrates a Lightweight Multi-Scale Decoder (LMSD) for multi-scale feature refinement, a Dual Offset Self-Correction Module (DOSM) for input-adaptive alignment between spatial features and class semantics, and a Weighted Guided Supervision Strategy (WGSS) for cross-scale supervision during training. As WGSS is discarded during inference, it introduces no additional inference overhead.
 
 
 ![LADS-Net Architecture](doc/arch.png)
