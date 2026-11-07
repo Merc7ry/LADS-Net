@@ -70,8 +70,8 @@ Five low-altitude drone datasets are used for the main experiments, while the IS
 | AeroScapes           | `aeroscapes`     | 12       | 512×512      |
 | UDD5                 | `udd5`           | 5        | 512×512      |
 | Semantic Drone (SDD) | `semantic_drone` | 24       | 512×512      |
-| ISPRS Vaihingen      | `vaihingen`      | 6        | 256×256      |
-| ISPRS Potsdam        | `potsdam`        | 6        | 256×256      |
+| ISPRS Vaihingen      | `vaihingen`      | 6        | 512×512      |
+| ISPRS Potsdam        | `potsdam`        | 6        | 512×512      |
 
 
 
@@ -104,7 +104,7 @@ Unless otherwise specified, the main experiment follows a unified protocol.
 | Epochs                   | **150**                   |
 | Batch size               | **4**                     |
 | Input resolution (UAV)   | **512×512**               |
-| Input resolution (ISPRS) | **256×256**               |
+| Input resolution (ISPRS) | **512×512**               |
 
 
 
@@ -140,7 +140,7 @@ python train.py \
   --name {dataset}_LADSNet
 ```
 
-ISPRS（256×256）：
+ISPRS：
 
 ```bash
 python train.py \
@@ -151,8 +151,8 @@ python train.py \
   --encoder_pretrain_path ./pretrained_pth/pvt/pvt_v2_b2.pth \
   --batch_size 4 \
   --epochs 150 \
-  --input_w 256 \
-  --input_h 256 \
+  --input_w 512 \
+  --input_h 512 \
   --name vaihingen_LADSNet
 ```
 
