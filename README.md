@@ -1,4 +1,4 @@
-# Lightweight Semantic Segmentation of Low-Altitude UAV Imagery via Dual Offset Self-Correction and Weighted Guided Supervision
+# LADS-Net: Lightweight Semantic Segmentation of Low-Altitude UAV Imagery via Bidirectional Feature Correction and Weighted Cross-Scale Supervision
 
 Official PyTorch implementation of **LADS-Net** for UAV / aerial semantic segmentation.
 
@@ -6,7 +6,9 @@ Official PyTorch implementation of **LADS-Net** for UAV / aerial semantic segmen
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?logo=pytorch&logoColor=white)
 ![Encoder](https://img.shields.io/badge/Encoder-PVTv2--B2-0A66C2)
 
-**LADS-Net** is a lightweight semantic segmentation network designed for resource-constrained low-altitude UAV scenarios. It integrates a Lightweight Multi-Scale Decoder (LMSD) for multi-scale feature refinement, a Dual Offset Self-Correction Module (DOSM) for input-adaptive alignment between spatial features and class semantics, and a Weighted Guided Supervision Strategy (WGSS) for cross-scale supervision during training. As WGSS is discarded during inference, it introduces no additional inference overhead.
+
+
+**LADS-Net** is a lightweight semantic segmentation network tailored to low-altitude UAV imagery under strict onboard computation constraints. It couples a **Lightweight Multi-Scale Decoder (LMSD)** with a **Dual Offset Self-Correction Module (DOSM)** and a **Weighted Guided Supervision Strategy (WGSS)**. LMSD uses multi-scale depthwise convolutions and channel–spatial recalibration to aggregate contextual cues efficiently, while grouped attention gates fuse shallow spatial details with high-level semantics. DOSM learns input-dependent offsets to align class representations with spatial features, thereby mitigating scale- and viewpoint-induced misalignment. WGSS further exploits complementary information across decoder predictions during training through weighted combination and guided supervision; as it is removed at inference, it adds no computational overhead. Together, these components enable LADS-Net to balance segmentation accuracy, model complexity, and latency for real-time UAV deployment.
 
 
 ![LADS-Net Architecture](doc/arch.png)
